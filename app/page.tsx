@@ -11,9 +11,7 @@ export default function NotionChatAssistant() {
   return (
     <div className="h-screen flex flex-col bg-gray-50">
       <ChatHeader onClearChat={clearChat} />
-
       <ChatMessages messages={messages} isLoading={isLoading} />
-
       <ChatInput
         currentInput={currentInput}
         isLoading={isLoading}

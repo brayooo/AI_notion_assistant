@@ -7,7 +7,6 @@ export async function POST(req: Request) {
   try {
     const { query }: NotionQueryRequest = await req.json()
 
-    // Send the query to the n8n workflow
     const response = await fetch(N8N_WEBHOOK_URL, {
       method: "POST",
       headers: {
@@ -24,7 +23,6 @@ export async function POST(req: Request) {
 
     const data = await response.json()
 
-    // Return the response from n8n using the 'reply' field
     return Response.json({
       response: data.reply || "No response from Notion workspace",
     })

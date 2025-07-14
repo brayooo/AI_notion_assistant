@@ -15,13 +15,13 @@ export function ChatHeader({ onClearChat }: ChatHeaderProps) {
           <Database className="h-6 w-6 text-blue-600" />
         </div>
         <div>
-          <h1 className="text-xl font-semibold text-gray-900">Notion Assistant</h1>
-          <p className="text-sm text-gray-500">Ask me about your Notion databases and pages</p>
+          <h1 className="text-xl font-semibold text-gray-900">Notion habit assistant</h1>
+          <p className="text-sm text-gray-500">Tell me about your day and I will help to save the information</p>
         </div>
       </div>
-      <Button variant="outline" size="sm" onClick={onClearChat} className="flex items-center gap-2 bg-transparent">
+      <Button variant="outline" size="sm" onClick={onClearChat}>
         <RotateCcw className="h-4 w-4" />
-        Clear Chat
+        Clear
       </Button>
     </div>
   )

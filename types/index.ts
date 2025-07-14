@@ -5,15 +5,6 @@ export interface ChatMessage {
   timestamp: Date
 }
 
-export interface NotionQueryRequest {
-  query: string
-}
-
-export interface NotionQueryResponse {
-  response?: string
-  error?: string
-}
-
 export interface ChatState {
   messages: ChatMessage[]
   currentInput: string

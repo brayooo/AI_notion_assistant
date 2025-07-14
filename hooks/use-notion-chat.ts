@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useCallback } from "react"
+import { NotionChatService } from "@/services/notion-chat"
 import { createUserMessage, createAssistantMessage } from "@/utils/chat"
 import { WELCOME_MESSAGE } from "@/constants/chat"
 import type { ChatState } from "@/types"
@@ -39,22 +40,12 @@ export function useNotionChat() {
     }))
 
     try {
-      const response = await fetch("/api/query-notion", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ query }),
+      const response = await NotionChatService.queryNotion({
+        query,
       })
 
-      const data = await response.json()
-
-      if (!response.ok) {
-        throw new Error(data.error || "Failed to query Notion")
-      }
-
       const assistantMessage = createAssistantMessage(
-        data.response || "I couldn't find any information for your query.",
+        response.response || "I couldn't find any information for your query.",
       )
 
       setState((prev) => ({
@@ -69,7 +60,7 @@ export function useNotionChat() {
         isLoading: false,
       }))
     }
-  }, [state.currentInput])
+  }, [state.currentInput, state.messages])
 
   const clearChat = useCallback(() => {
     setState({
